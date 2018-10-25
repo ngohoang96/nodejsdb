@@ -14,17 +14,32 @@ app.get('/', (req, res) => {
 });
 app.get('/remove/:id' , (req, res) =>{
     const {id} = req.params;
-    const index = singers.findIndex(singer => +singer.id === id);
-    if(index === -1) return res.send('khong tim thay')
+    const index = singers.findIndex(singer => singer.id === +id);
+    if(index === -1) return res.send('khong tim thay');
     singers.splice(index, 1);
     res.redirect('/'); 
 } )
 app.get('/add', (req, res) => res.render('add'));
 app.post('/add',(req,res)=>{
-    
-    console.log(req.body);
-    res.send('da them')
-
+    const {name,link,image} = req.body;
+    const singer = new Singer(name, link, image);
+    singers.push(singer);
+    res.redirect('/');
 })
+app.get('/update/:id',(req,res)=>{
+    const singer = singers.find(s => s.id === +req.params.id);
+    if(!singer) return res.send('khong tim thay');
+    res.render('update',{singer});
+})
+app.post('/update/:id',(req,res)=>{
+ const {name,link,image} = req.body;
+ const singer = singers.find(s => s.id === +req.params.id);
+ if(!singer) return res.send('khong tim thay');
+ singer.name = name;
+ singer.link = link;
+ singer.image = image; 
+ res.redirect('/');
+});
+
 app.listen(3000, () => console.log('Server started!'));
 reload(app);
