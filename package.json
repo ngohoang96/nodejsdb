@@ -1,5 +1,17 @@
 {
+  "name": "nodejsdb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://ngohoang96@github.com/ngohoang96/nodejsdb.git",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon index.js -e js,ejs,css"
+  },
   "dependencies": {
-    "service": "^0.1.4"
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "reload": "^2.3.1"
   }
 }
