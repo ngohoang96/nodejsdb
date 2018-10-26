@@ -1,17 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossorigin="anonymous">
-    <title>Singers</title>
-</head>
-
+<html lang="en"> 
+<%- include('./head.ejs')  %>
 <body>
-    <h1>Khoa Pham Singers</h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -24,17 +14,7 @@
         </thead>
         <tbody>
           <%  singers.forEach((singer,index)=>{ %>
-            <tr>
-                <td><%= index + 1 %></td>
-                <td><%= singer.name %></td>
-                <td><img src="<%= singer.image %>" ></td>
-                <td><a href="<%= singer.link %>"><%= singer.name %></a></td>
-                <td>
-                    <a href="/remove/<%= singer.id %>">Remove</a>
-                    <br>
-                    <a href="/update/<%= singer.id %>">Update</a>
-                </td>
-            </tr>
+           <%- include('./row.ejs',{singer,index}) %>
            <% }) %>
 
         </tbody>
